@@ -1,0 +1,107 @@
+.typediv {
+    --water: #4fc1ff;
+    --fire: #ee4b00;
+    --rock: #5f2b0d;
+    --air: #ffffff;
+    --cold: #00ffff;
+    --light: #f2ff7c;
+    --dark: #0c0c0c;
+    --metal: #4b4b4b;
+    --blunt: #680000;
+    --sharp: #c00000;
+    --physical: #ae00ff;
+    --neutral: #b9b9b9;
+    background: linear-gradient(25deg, var(--c1) 50%, var(--c2) 50%);
+    border: black 2px solid;
+    border-radius: 1em;
+    color: #ffffff;
+    font-weight: bold;
+    padding-left: 2%;
+    padding-right: 2%;
+    width: fit-content;
+    -webkit-text-stroke: black 1px;
+    min-width: 50px;
+    text-align: center;
+}
+
+.w1 {
+    --c1:var(--water);
+}
+.w2 {
+    --c2:var(--water);
+}
+
+.f1 {
+    --c1:var(--fire);
+}
+.f2 {
+    --c2:var(--fire);
+}
+
+.r1 {
+    --c1:var(--rock);
+}
+.r2 {
+    --c2:var(--rock);
+}
+
+.a1 {
+    --c1:var(--air);
+}
+.a2 {
+    --c2:var(--air);
+}
+
+.c1 {
+    --c1:var(--cold);
+}
+.c2 {
+    --c2:var(--cold);
+}
+
+.l1 {
+    --c1:var(--light);
+}
+.l2 {
+    --c2:var(--light);
+}
+
+.d1 {
+    --c1:var(--dark);
+}
+.d2 {
+    --c2:var(--dark);
+}
+
+.m1 {
+    --c1:var(--metal);
+}
+.m2 {
+    --c2:var(--metal);
+}
+
+.b1 {
+    --c1:var(--blunt);
+}
+.b2 {
+    --c2:var(--blunt);
+}
+
+.s1 {
+    --c1:var(--sharp);
+}
+.s2 {
+    --c2:var(--sharp);
+}
+
+.p1 {
+    --c1:var(--physical);
+}
+.p2 {
+    --c2:var(--physical);
+}
+
+.n1, .n2 {
+    --c1:var(--neutral);
+    --c2:var(--neutral);
+}
