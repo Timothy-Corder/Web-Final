@@ -44,7 +44,7 @@ def login_view(request:HttpRequest):
                 "message": "Invalid username and/or password."
             })
     else:
-        next = request.GET.get('next')
+        next = request.GET.get('next') if request.GET.get('next') else ''
         return render(request, 'login.html', {'next':next})
 
 def register_view(request:HttpRequest):

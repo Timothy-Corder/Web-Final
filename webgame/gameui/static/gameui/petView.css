@@ -61,7 +61,7 @@
     height: fit-content;
 }
 
-.petPrimary, .petSecondary, .petHighlights, .petSclera {
+.petPrimary, .petSecondary, .petHighlights, .petSclera, .petWhite {
     position: absolute;
     image-rendering: pixelated;
     /* Make size relative to container instead of fixed em value */
@@ -79,6 +79,9 @@
 }
 .petHighlights::after {
     background-color: var(--highlightColor);
+}
+.petWhite::after {
+    background-color: white;
 }
 
 .imgHolder .body {

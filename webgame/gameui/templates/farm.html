@@ -35,7 +35,7 @@
                     </style>
                     <div class="imgholder {{ pet.uuid }}">
                         <div class="petPrimary body"></div>
-                        <div class="{{ pet.features.skin|includes:'carapace'|yesno:'petSecondary,' }} skin"></div>
+                        <div class="{{ pet.features.skin|includes:'carapace'|yesno:'petSecondary,petWhite' }} skin"></div>
                         <div class="pet{{ pet.features.color }} trait"></div>
                         <div class="petHighlights eyes"></div>
                         <div class="petSclera"></div>
