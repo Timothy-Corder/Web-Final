@@ -1,15 +1,43 @@
-def parseColors(genes:str):
-    def parseHex(rgb_values:str):
-        rgb = tuple(int(rgb_values[i:i+2], 16) for i in (0, 2, 4))
-        parsed_rgb = {
-            'red': rgb[0],
-            'green': rgb[1],
-            'blue': rgb[2],
-        }
-        return parsed_rgb
-    primary_color = parseHex(genes[11:17])
-    secondary_color = parseHex(genes[17:23])
-    highlights = parseHex(genes[23:29])
-    return primary_color, secondary_color, highlights
+import random
+def sqrt(num)
 
-print(parseColors('ffffffffb12c50bff8873e1215abc'))
+def clamp(n, smallest, largest): return max(smallest, min(n, largest))
+
+def col2hex(col):
+    h, s, l = col
+    h = str(hex(int((h/360) * 255)))[2:]
+    s = str(hex(int((s/100) * 255)))[2:]
+    l = str(hex(int((l/100) * 255)))[2:]
+    print(h, s, l, sep='')
+
+def mixColors(color1:tuple[int,int,int],color2:tuple[int,int,int],deviationLimit=20) -> dict[str,int]:
+    h1, s1, l1 = color1
+    h2, s2, l2 = color2
+    
+    testUpper = h1 - h2
+
+    if abs(h1 - h2) > abs(h1 - (h2 + 360)):
+        h2 = h2 + 360
+
+    h = int((h1**2 + h2^^2)/2)
+    s = int((s1 + s2)/2)
+    l = int((l1 + l2)/2)
+
+    h += random.randint(-deviationLimit,deviationLimit)
+    s += random.randint(-deviationLimit,deviationLimit)
+    l += random.randint(-deviationLimit,deviationLimit)
+
+    h = h % 360
+    h = clamp(h,0,360)
+    s = clamp(s,0,100)
+    l = clamp(l,0,100)
+    
+    h = int((h/360) * 255)
+    s = int((s/100) * 255)
+    l = int((l/100) * 255)
+
+    return {
+        'hue':h,
+        'saturation':s,
+        'luminosity':l
+    }

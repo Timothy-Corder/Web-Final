@@ -20,12 +20,13 @@ from . import views
 
 urlpatterns = [
     path("home", views.homepage, name='home'),
-    path("my-pets", views.farm, name='my-pets'),
+    path("my-pets", views.pets, name='my-pets'),
     path("add", views.addPet, name='add'),
     path("fight", views.homepage, name='fight'),
-    path("auction", views.homepage, name='auction'),
+    path("hatchery", views.hatcher, name='hatch'),
     path("", views.toHome),
     path("logout", views.logout_view, name='logout'),
     path("login", views.login_view, name='login'),
     path("register", views.register_view, name='register'),
+    path('admin-breed', views.aBreed, name='admin-breed')
 ]

@@ -24,6 +24,15 @@
     text-align: center;
 }
 
+.pet-types {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5%;
+    height: 3em;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
 .w1 {
     --c1:var(--water);
 }

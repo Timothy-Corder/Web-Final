@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% load static %}
+{% load custom_filters %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'gameui/petView.css' %}">
+{% endblock %}
+
+
+{% block body %}
+
+<script>
+    function sendGetRequest(url) {
+        fetch(url, {
+            method: 'GET'
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log("Request successful:", response);
+            } else {
+                console.error("Request failed:", response);
+            }
+        })
+        .catch(error => console.error("Request error:", error));
+    }
+</script>
+    <div id="cardcontainer">
+        {% for pet in pets %}
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="{% static pet.gender|yesno:'male.svg,female.svg' %}">{{ pet.name }}</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .{{ pet.uuid }} *, .{{ pet.uuid }} *::after {
+                            --pos: {{ pet.features.position }};
+                            --body: url({% static pet.features.walk %}base.png);
+                            --eyes: url({% static pet.features.walk %}eye.png);
+                            --sclera: url({% static pet.features.walk %}eye_white.png);
+                            --skin: url({% static pet.features.walk %}{{ pet.features.skin }});
+                            --trait: url({% static pet.features.walk %}{{ pet.features.trait }});
+                        }
+
+                        .{{ pet.uuid }} *::after {
+                            --primaryColor: hsl({{ pet.primary.hue }}, {{ pet.primary.saturation }}%, {{ pet.primary.luminosity }}%);
+                            --secondaryColor: hsl({{ pet.secondary.hue }}, {{ pet.secondary.saturation }}%, {{ pet.secondary.luminosity }}%);
+                            --highlightColor: hsl({{ pet.highlights.hue }}, {{ pet.highlights.saturation }}%, {{ pet.highlights.luminosity }}%);
+                        }
+                    </style>
+                    <div class="imgholder {{ pet.uuid }}">
+                        <div class="petPrimary body"></div>
+                        <div class="{{ pet.features.skin|includes:'carapace'|yesno:'petSecondary,petPrimary' }} skin"></div>
+                        <div class="pet{{ pet.features.color }} trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="pet-types">
+                        {% for type in pet.types %}
+                            <div class="typediv {{ pet.unparsedTypes|get_item:type|get_item:'c1' }}1 {{ pet.unparsedTypes|get_item:type|get_item:'c2' }}2"></div>
+                            <br>
+                        {% endfor %}
+                    </div>
+                    <!--
+                        {{ pet.features.walk }}
+                        {{ pet.features.trait }}
+                        {{ pet.features.skin }}
+                    -->
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

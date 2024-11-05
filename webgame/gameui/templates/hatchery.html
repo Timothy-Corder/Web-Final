@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% load static %}
+{% load custom_filters %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'gameui/eggView.css' %}">
+{% endblock %}
+
+
+{% block body %}
+    <div id="cardcontainer">
+        {% for egg in eggs %}
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2>Egg</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <div class="imgholder">
+                        <div class="petPrimary body"></div>
+                        <div class="{{ pet.features.skin|includes:'carapace'|yesno:'petSecondary,petPrimary' }} skin"></div>
+                        <div class="pet{{ pet.features.color }} trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="pet-types">
+                        {% for type in pet.types %}
+                            <div class="typediv {{ pet.unparsedTypes|get_item:type|get_item:'c1' }}1 {{ pet.unparsedTypes|get_item:type|get_item:'c2' }}2">{{ type|title }}</div>
+                            <br>
+                        {% endfor %}
+                    </div>
+                    <!--
+                        {{ pet.features.walk }}
+                        {{ pet.features.trait }}
+                        {{ pet.features.skin }}
+                    -->
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

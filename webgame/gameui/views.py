@@ -5,7 +5,7 @@ from django.db import IntegrityError, models
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import User, Pet, Egg
-from .util import parsePet, randomPet, combinePets, starterPets
+from .util import parsePet, randomPet, combinePets, starterPets, hatch
 
 # Create your views here.
 
@@ -24,7 +24,6 @@ def toHome(request:HttpRequest):
         return redirect(reverse('login'))
     
 def login_view(request:HttpRequest):
-    print(request.content_params)
     if request.method == 'POST':
 
         # Attempt to sign user in
@@ -81,18 +80,14 @@ def logout_view(request:HttpRequest):
     return HttpResponseRedirect(reverse("home"))
 
 @login_required(login_url='login')
-def farm(request:HttpRequest):
-    # randPet = randomPet(request.user)
-    # randPet.save()
+def pets(request:HttpRequest):
     pets = Pet.objects.filter(master=request.user)
     parsedPets = []
     for pet in pets:
         parsedPets.append((parsedPet := parsePet(pet)))
-        print(parsedPet)
-    # combinePets(pets[19], pets[5], request.user)
     
-    return render(request, 'farm.html', {
-        'title':'My Farm',
+    return render(request, 'pets.html', {
+        'title':'My Pets',
         'pets':parsedPets
     })
 
@@ -104,3 +99,26 @@ def addPet(request:HttpRequest):
         return HttpResponseRedirect(reverse('my-pets'))
     else:
         return HttpResponseForbidden()
+    
+@login_required(login_url='login')
+def aBreed(request:HttpRequest):
+    if request.method == 'GET': #and request.user.is_superuser:
+        try:
+            pet1 = Pet.objects.get(id=int(request.GET.get('p1')))
+            pet2 = Pet.objects.get(id=int(request.GET.get('p2')))
+        except KeyError:
+            pet1 = Pet.objects.get(id=0)
+            pet2 = Pet.objects.get(id=1)
+        except ValueError:
+            pet1 = Pet.objects.get(letterId=request.GET.get('p1'))
+            pet2 = Pet.objects.get(letterId=request.GET.get('p2'))
+        child = combinePets(pet1, pet2,request.user)
+        child.save()
+
+        return HttpResponseRedirect(reverse('my-pets'))
+    else:
+        return HttpResponseForbidden()
+    
+@login_required(login_url='login')
+def hatcher(request:HttpRequest):
+    return render(request)
