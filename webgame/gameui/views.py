@@ -121,4 +121,9 @@ def aBreed(request:HttpRequest):
     
 @login_required(login_url='login')
 def hatcher(request:HttpRequest):
-    return render(request)
+    eggs = Egg.objects.filter(master=request.user)
+    return render(request, 'hatchery.html', {"eggs":eggs})
+
+@login_required(login_url='login')
+def settings(request: HttpRequest):
+    return render(request, 'settings.html')

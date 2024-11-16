@@ -1,30 +1,18 @@
 {% extends "layout.html" %}
 
+{% block title %}My Pets{% endblock title %}
+
 {% load static %}
 {% load custom_filters %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'gameui/petView.css' %}">
+<link rel="stylesheet" href="{% static 'gameui/petView.css' %}">
+<link rel="stylesheet" href="{% static 'gameui/symbolStyle.css' %}">
 {% endblock %}
 
+{% block internal_css %}{% endblock internal_css %}
 
 {% block body %}
-
-<script>
-    function sendGetRequest(url) {
-        fetch(url, {
-            method: 'GET'
-        })
-        .then(response => {
-            if (response.ok) {
-                console.log("Request successful:", response);
-            } else {
-                console.error("Request failed:", response);
-            }
-        })
-        .catch(error => console.error("Request error:", error));
-    }
-</script>
     <div id="cardcontainer">
         {% for pet in pets %}
             <div class="card">
@@ -59,10 +47,14 @@
 
                     </div>
                     <hr>
-                    <div class="pet-types">
-                        {% for type in pet.types %}
-                            <div class="typediv {{ pet.unparsedTypes|get_item:type|get_item:'c1' }}1 {{ pet.unparsedTypes|get_item:type|get_item:'c2' }}2"></div>
-                            <br>
+                    <div class="symbol-types">
+                    {% for type in pet.types %}
+                        <div class="symbol-type {{ pet.unparsedTypes|get_item:type|get_item:'c1' }}1 {{ pet.unparsedTypes|get_item:type|get_item:'c2' }}2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
                         {% endfor %}
                     </div>
                     <!--
@@ -74,4 +66,51 @@
             </div>
         {% endfor %}
     </div>
+<script>
+    // Get quality setting from localStorage
+    const quality = localStorage.getItem('quality') || 'med';
+
+    // Map quality settings to suffix
+    const qualityMap = {
+    'low': 'x1',
+    'med': 'x4',
+    'high': 'x8'
+    };
+
+    const suffix = qualityMap[quality];
+
+    // Function to update asset paths in style tags
+    function updateAssetPaths() {
+        // Get all style tags
+        const styleTags = document.getElementsByTagName('style');
+
+        for (let styleTag of styleTags) {
+            let cssText = styleTag.textContent;
+            
+            // Update quadruped paths
+            cssText = cssText.replace(
+            /url\(\/static\/assets\/quadruped\//g, 
+            `url(/static/assets/quadruped_${suffix}/`
+            );
+            
+            // Update glide paths
+            cssText = cssText.replace(
+            /url\(\/static\/assets\/glide\//g, 
+            `url(/static/assets/glide_${suffix}/`
+            );
+            
+            // Update symbols paths
+            cssText = cssText.replace(
+            /url\(\/static\/assets\/symbols\//g, 
+            `url(/static/assets/symbols_${suffix}/`
+            );
+            
+            // Update the style tag content
+            styleTag.textContent = cssText;
+        }
+    }
+
+    // Run the update when the document loads
+    document.addEventListener("DOMContentLoaded", updateAssetPaths)
+</script>
 {% endblock %}

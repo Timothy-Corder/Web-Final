@@ -1,5 +1,5 @@
 from django.db import models
-from .models import Pet, User, Egg
+from .models import Pet, User, Egg, UserProfile
 import random
 from math import sqrt
 
@@ -517,13 +517,24 @@ def hatch(egg:Egg, name:str):
     return hatchling
 
 def starterPets(master:User):
-    genome1 = 'wwwwwwwwcno2b4ad4602bd42b9fd4bec'
-    genome2 = 'ffffffffeipff5900ffd800ff0027beh'
+    genome1 = 'wwwwwwwwcno8cd6ad8cd6e58cd667bec'
+    genome2 = 'ffffffffeip15ff9915ff6600ff7fbeh'
     genome3 = 'rrrrrrrrbop57c13e3ec16699c13ebeb'
-    genome4 = 'aaaaaaaaagmf6f6f6dcdddd5f86a0beg'
+    genome4 = 'aaaaaaaaagmf6f6f681aadd5f86a0beg'
 
     pet1 = Pet(genes=genome1,master=master,age=100.0,gender=False,name='Aqua',letterId=generateUUID(64))
     pet2 = Pet(genes=genome2,master=master,age=100.0,gender=True,name='Ignis',letterId=generateUUID(64))
     pet3 = Pet(genes=genome3,master=master,age=100.0,gender=False,name='Gaia',letterId=generateUUID(64))
     pet4 = Pet(genes=genome4,master=master,age=100.0,gender=True,name='Aero',letterId=generateUUID(64))
     return pet1, pet2, pet3, pet4
+
+def get_settings(user:User):
+    try:
+        profile = UserProfile.objects.get(user=user)
+    except UserProfile.DoesNotExist:
+        profile = UserProfile(quality=0,user=user)
+        profile.save()
+    settings = {}
+    settings['quality'] = profile
+    
+    return settings

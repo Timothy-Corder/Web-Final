@@ -1,0 +1,1798 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>Geneti-pets | Unknown</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/gameui/style.css">
+    
+<link rel="stylesheet" href="/static/gameui/petView.css">
+<link rel="stylesheet" href="/static/gameui/symbolStyle.css">
+
+    <link rel="shortcut icon" href="/static/favicon.svg">
+</head>
+<body>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/home"><h1>Geneti-pets</h1></a>
+        </li>
+        
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Log Out</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/my-pets">Pets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/fight">Fight</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/hatchery">Hatchery</a>
+            </li>
+            <li class="nav-item" style="justify-self: flex-end;">
+                <h2>Logged in as admin</h2>
+            </li>
+        
+    </ul>
+    <div class="backdrop" style="background: lightblue; width: 100%; height: 100%; padding: 2%; overflow: scroll;">
+        
+    <div id="cardcontainer">
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/female.svg">Generated Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .xlgbinabcofzbspgnxxondulhxpdhtovipjwizwvrcfxikufvulkaegkjfdmlkmc *, .xlgbinabcofzbspgnxxondulhxpdhtovipjwizwvrcfxikufvulkaegkjfdmlkmc *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/skin.png);
+                            --trait: url(/static/assets/glide/tail.png);
+                        }
+
+                        .xlgbinabcofzbspgnxxondulhxpdhtovipjwizwvrcfxikufvulkaegkjfdmlkmc *::after {
+                            --primaryColor: hsl(244, 73%, 42%);
+                            --secondaryColor: hsl(124, 88%, 68%);
+                            --highlightColor: hsl(93, 74%, 31%);
+                        }
+                    </style>
+                    <div class="imgholder xlgbinabcofzbspgnxxondulhxpdhtovipjwizwvrcfxikufvulkaegkjfdmlkmc">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petPrimary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type a1 p2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type b1 m2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type c1 r2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type a1 c2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        tail.png
+                        skin.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/male.svg">Generated Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .fhxpnlndnljhqdoyopvotuqkzltjhxwexryxusdcrpzlhjikldlkcwlalexiovez *, .fhxpnlndnljhqdoyopvotuqkzltjhxwexryxusdcrpzlhjikldlkcwlalexiovez *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/scales.png);
+                            --trait: url(/static/assets/glide/none.png);
+                        }
+
+                        .fhxpnlndnljhqdoyopvotuqkzltjhxwexryxusdcrpzlhjikldlkcwlalexiovez *::after {
+                            --primaryColor: hsl(134, 82%, 40%);
+                            --secondaryColor: hsl(326, 58%, 80%);
+                            --highlightColor: hsl(19, 97%, 80%);
+                        }
+                    </style>
+                    <div class="imgholder fhxpnlndnljhqdoyopvotuqkzltjhxwexryxusdcrpzlhjikldlkcwlalexiovez">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type c1 f2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type c1 w2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type p1 w2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type p1 l2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        none.png
+                        scales.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/female.svg">Generated Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .azuwuhhyoiwjfrqfpnekreyxdmccygtdfdktevtmjhsngskmxcagsrzfltveeezk *, .azuwuhhyoiwjfrqfpnekreyxdmccygtdfdktevtmjhsngskmxcagsrzfltveeezk *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/feathers.png);
+                            --trait: url(/static/assets/glide/horns_0.png);
+                        }
+
+                        .azuwuhhyoiwjfrqfpnekreyxdmccygtdfdktevtmjhsngskmxcagsrzfltveeezk *::after {
+                            --primaryColor: hsl(247, 18%, 82%);
+                            --secondaryColor: hsl(11, 0%, 98%);
+                            --highlightColor: hsl(149, 13%, 74%);
+                        }
+                    </style>
+                    <div class="imgholder azuwuhhyoiwjfrqfpnekreyxdmccygtdfdktevtmjhsngskmxcagsrzfltveeezk">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type d1 c2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type s1 r2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type b1 s2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type n1 d2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        horns_0.png
+                        feathers.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/female.svg">Generated Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .rzndnurhdayuzaqsykhaghgqionlufncynnlykxsfwworagrkxzomdgldumprvyn *, .rzndnurhdayuzaqsykhaghgqionlufncynnlykxsfwworagrkxzomdgldumprvyn *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/quadruped/base.png);
+                            --eyes: url(/static/assets/quadruped/eye.png);
+                            --sclera: url(/static/assets/quadruped/eye_white.png);
+                            --skin: url(/static/assets/quadruped/feathers.png);
+                            --trait: url(/static/assets/quadruped/horns_1.png);
+                        }
+
+                        .rzndnurhdayuzaqsykhaghgqionlufncynnlykxsfwworagrkxzomdgldumprvyn *::after {
+                            --primaryColor: hsl(214, 19%, 50%);
+                            --secondaryColor: hsl(268, 58%, 90%);
+                            --highlightColor: hsl(293, 52%, 70%);
+                        }
+                    </style>
+                    <div class="imgholder rzndnurhdayuzaqsykhaghgqionlufncynnlykxsfwworagrkxzomdgldumprvyn">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type w1 f2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type c1 s2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type r1 m2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type f1 m2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/quadruped/
+                        horns_1.png
+                        feathers.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/female.svg">Generated Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .cplrcjeyyvflmniprzsgjblicnkgopiaqnqrhrqvvwgxhlednylwkltatkdepfuq *, .cplrcjeyyvflmniprzsgjblicnkgopiaqnqrhrqvvwgxhlednylwkltatkdepfuq *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/fur.png);
+                            --trait: url(/static/assets/glide/antennae.png);
+                        }
+
+                        .cplrcjeyyvflmniprzsgjblicnkgopiaqnqrhrqvvwgxhlednylwkltatkdepfuq *::after {
+                            --primaryColor: hsl(21, 3%, 23%);
+                            --secondaryColor: hsl(261, 71%, 85%);
+                            --highlightColor: hsl(19, 87%, 67%);
+                        }
+                    </style>
+                    <div class="imgholder cplrcjeyyvflmniprzsgjblicnkgopiaqnqrhrqvvwgxhlednylwkltatkdepfuq">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type d1 s2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type r1 b2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type p1 c2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type n1 d2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        antennae.png
+                        fur.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/female.svg">Generated Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .vomslweksyhbpkkgjccvlzxzgbajpkbplajavcovmolasadbczjzmqtrtzitpupy *, .vomslweksyhbpkkgjccvlzxzgbajpkbplajavcovmolasadbczjzmqtrtzitpupy *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/scales.png);
+                            --trait: url(/static/assets/glide/alt_tail.png);
+                        }
+
+                        .vomslweksyhbpkkgjccvlzxzgbajpkbplajavcovmolasadbczjzmqtrtzitpupy *::after {
+                            --primaryColor: hsl(76, 70%, 19%);
+                            --secondaryColor: hsl(1, 35%, 79%);
+                            --highlightColor: hsl(225, 89%, 12%);
+                        }
+                    </style>
+                    <div class="imgholder vomslweksyhbpkkgjccvlzxzgbajpkbplajavcovmolasadbczjzmqtrtzitpupy">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petPrimary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type s1 w2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type d1 c2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type a1 n2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type s1 m2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        alt_tail.png
+                        scales.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/female.svg">Generated Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .ppquykdiffqdzypagmlpjaeflpavmzifqspmerkzmyhofuhdwjtljbcsvwiahzgi *, .ppquykdiffqdzypagmlpjaeflpavmzifqspmerkzmyhofuhdwjtljbcsvwiahzgi *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/scales.png);
+                            --trait: url(/static/assets/glide/alt_tail.png);
+                        }
+
+                        .ppquykdiffqdzypagmlpjaeflpavmzifqspmerkzmyhofuhdwjtljbcsvwiahzgi *::after {
+                            --primaryColor: hsl(216, 27%, 64%);
+                            --secondaryColor: hsl(330, 67%, 38%);
+                            --highlightColor: hsl(122, 47%, 31%);
+                        }
+                    </style>
+                    <div class="imgholder ppquykdiffqdzypagmlpjaeflpavmzifqspmerkzmyhofuhdwjtljbcsvwiahzgi">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petPrimary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type d1 m2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type n1 c2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type w1 a2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type m1 l2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        alt_tail.png
+                        scales.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/female.svg">Generated Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .ovkoxptaukfkrxyoholxfleluezhmrirasdytkmtxpfckobphtcblmovccxpgjpi *, .ovkoxptaukfkrxyoholxfleluezhmrirasdytkmtxpfckobphtcblmovccxpgjpi *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/feathers.png);
+                            --trait: url(/static/assets/glide/none.png);
+                        }
+
+                        .ovkoxptaukfkrxyoholxfleluezhmrirasdytkmtxpfckobphtcblmovccxpgjpi *::after {
+                            --primaryColor: hsl(337, 89%, 70%);
+                            --secondaryColor: hsl(86, 30%, 2%);
+                            --highlightColor: hsl(108, 54%, 99%);
+                        }
+                    </style>
+                    <div class="imgholder ovkoxptaukfkrxyoholxfleluezhmrirasdytkmtxpfckobphtcblmovccxpgjpi">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type l1 f2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type c1 m2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type c1 w2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type b1 l2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        none.png
+                        feathers.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/male.svg">Generated Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .ygwbjrirskvcgsgskrgfknooiwgroxfotsgspiplubzodekoylpebdtwyitayyga *, .ygwbjrirskvcgsgskrgfknooiwgroxfotsgspiplubzodekoylpebdtwyitayyga *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/feathers.png);
+                            --trait: url(/static/assets/glide/alt_tail.png);
+                        }
+
+                        .ygwbjrirskvcgsgskrgfknooiwgroxfotsgspiplubzodekoylpebdtwyitayyga *::after {
+                            --primaryColor: hsl(184, 44%, 50%);
+                            --secondaryColor: hsl(227, 65%, 47%);
+                            --highlightColor: hsl(180, 37%, 2%);
+                        }
+                    </style>
+                    <div class="imgholder ygwbjrirskvcgsgskrgfknooiwgroxfotsgspiplubzodekoylpebdtwyitayyga">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petPrimary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type w1 n2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type d1 l2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type l1 l2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type c1 m2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        alt_tail.png
+                        feathers.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/male.svg">Generated Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .xpejvuxklbieqoccyuseiufwngayqlkhglmkphxkhawrwdmnmymlxbccrygplmqu *, .xpejvuxklbieqoccyuseiufwngayqlkhglmkphxkhawrwdmnmymlxbccrygplmqu *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/feathers.png);
+                            --trait: url(/static/assets/glide/horns_1.png);
+                        }
+
+                        .xpejvuxklbieqoccyuseiufwngayqlkhglmkphxkhawrwdmnmymlxbccrygplmqu *::after {
+                            --primaryColor: hsl(46, 61%, 78%);
+                            --secondaryColor: hsl(189, 92%, 78%);
+                            --highlightColor: hsl(144, 30%, 20%);
+                        }
+                    </style>
+                    <div class="imgholder xpejvuxklbieqoccyuseiufwngayqlkhglmkphxkhawrwdmnmymlxbccrygplmqu">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type n1 c2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type f1 d2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type p1 a2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type d1 a2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        horns_1.png
+                        feathers.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/female.svg">Generated Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .krbhxeekgpxkifnbygzwafdbhmxqvoytsvjwmtwdejhkesqlsnhvhtnjanjkknat *, .krbhxeekgpxkifnbygzwafdbhmxqvoytsvjwmtwdejhkesqlsnhvhtnjanjkknat *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/carapace.png);
+                            --trait: url(/static/assets/glide/horns_1.png);
+                        }
+
+                        .krbhxeekgpxkifnbygzwafdbhmxqvoytsvjwmtwdejhkesqlsnhvhtnjanjkknat *::after {
+                            --primaryColor: hsl(63, 12%, 12%);
+                            --secondaryColor: hsl(28, 35%, 41%);
+                            --highlightColor: hsl(230, 5%, 52%);
+                        }
+                    </style>
+                    <div class="imgholder krbhxeekgpxkifnbygzwafdbhmxqvoytsvjwmtwdejhkesqlsnhvhtnjanjkknat">
+                        <div class="petPrimary body"></div>
+                        <div class="petSecondary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type b1 l2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type n1 d2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type m1 a2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type d1 a2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        horns_1.png
+                        carapace.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/female.svg">Generated Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .vuyggmhulamqmcvzqttzzhnvaksvkuajgjmrtcernjapxbxobajkdszyppxssfnf *, .vuyggmhulamqmcvzqttzzhnvaksvkuajgjmrtcernjapxbxobajkdszyppxssfnf *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/skin.png);
+                            --trait: url(/static/assets/glide/alt_tail.png);
+                        }
+
+                        .vuyggmhulamqmcvzqttzzhnvaksvkuajgjmrtcernjapxbxobajkdszyppxssfnf *::after {
+                            --primaryColor: hsl(324, 29%, 13%);
+                            --secondaryColor: hsl(101, 2%, 59%);
+                            --highlightColor: hsl(97, 87%, 94%);
+                        }
+                    </style>
+                    <div class="imgholder vuyggmhulamqmcvzqttzzhnvaksvkuajgjmrtcernjapxbxobajkdszyppxssfnf">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petPrimary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type w1 l2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type b1 s2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type l1 f2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type n1 r2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        alt_tail.png
+                        skin.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/male.svg">Generated Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .bvesgucfhcvdlaucvmramabhcecxnoldhqrenqfbkscgbfoqczbnwbreftiplpch *, .bvesgucfhcvdlaucvmramabhcecxnoldhqrenqfbkscgbfoqczbnwbreftiplpch *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/feathers.png);
+                            --trait: url(/static/assets/glide/sharp_ears.png);
+                        }
+
+                        .bvesgucfhcvdlaucvmramabhcecxnoldhqrenqfbkscgbfoqczbnwbreftiplpch *::after {
+                            --primaryColor: hsl(64, 3%, 43%);
+                            --secondaryColor: hsl(81, 11%, 20%);
+                            --highlightColor: hsl(282, 84%, 55%);
+                        }
+                    </style>
+                    <div class="imgholder bvesgucfhcvdlaucvmramabhcecxnoldhqrenqfbkscgbfoqczbnwbreftiplpch">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petPrimary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type p1 c2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type n1 r2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type c1 r2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type m1 c2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        sharp_ears.png
+                        feathers.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/male.svg">Generated Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .bmapalxygumfuwrlhbakscyyhiulikorlprgdrbftywgpqiwysnhvldtwarlhvkz *, .bmapalxygumfuwrlhbakscyyhiulikorlprgdrbftywgpqiwysnhvldtwarlhvkz *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/scales.png);
+                            --trait: url(/static/assets/glide/horns_1.png);
+                        }
+
+                        .bmapalxygumfuwrlhbakscyyhiulikorlprgdrbftywgpqiwysnhvldtwarlhvkz *::after {
+                            --primaryColor: hsl(9, 87%, 11%);
+                            --secondaryColor: hsl(155, 10%, 80%);
+                            --highlightColor: hsl(348, 43%, 94%);
+                        }
+                    </style>
+                    <div class="imgholder bmapalxygumfuwrlhbakscyyhiulikorlprgdrbftywgpqiwysnhvldtwarlhvkz">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type l1 p2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type n1 d2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type d1 r2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type p1 r2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        horns_1.png
+                        scales.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/female.svg">Generated Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .ylkncwlabwurrafqhpmsewsadfilxrvbrngdgwntdfgldpwwimofnhekaxmyjxmx *, .ylkncwlabwurrafqhpmsewsadfilxrvbrngdgwntdfgldpwwimofnhekaxmyjxmx *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/carapace.png);
+                            --trait: url(/static/assets/glide/sharp_ears.png);
+                        }
+
+                        .ylkncwlabwurrafqhpmsewsadfilxrvbrngdgwntdfgldpwwimofnhekaxmyjxmx *::after {
+                            --primaryColor: hsl(36, 51%, 73%);
+                            --secondaryColor: hsl(8, 53%, 85%);
+                            --highlightColor: hsl(338, 35%, 79%);
+                        }
+                    </style>
+                    <div class="imgholder ylkncwlabwurrafqhpmsewsadfilxrvbrngdgwntdfgldpwwimofnhekaxmyjxmx">
+                        <div class="petPrimary body"></div>
+                        <div class="petSecondary skin"></div>
+                        <div class="petPrimary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type n1 w2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type f1 l2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        sharp_ears.png
+                        carapace.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/male.svg">Combined Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .uyiqqdblkkwrmsipnwuqhqredvinltlwnjhtuyvapykdqgcqifaonaiarqvchusv *, .uyiqqdblkkwrmsipnwuqhqredvinltlwnjhtuyvapykdqgcqifaonaiarqvchusv *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/quadruped/base.png);
+                            --eyes: url(/static/assets/quadruped/eye.png);
+                            --sclera: url(/static/assets/quadruped/eye_white.png);
+                            --skin: url(/static/assets/quadruped/carapace.png);
+                            --trait: url(/static/assets/quadruped/horns_1.png);
+                        }
+
+                        .uyiqqdblkkwrmsipnwuqhqredvinltlwnjhtuyvapykdqgcqifaonaiarqvchusv *::after {
+                            --primaryColor: hsl(127, 0%, 26%);
+                            --secondaryColor: hsl(337, 62%, 77%);
+                            --highlightColor: hsl(269, 43%, 51%);
+                        }
+                    </style>
+                    <div class="imgholder uyiqqdblkkwrmsipnwuqhqredvinltlwnjhtuyvapykdqgcqifaonaiarqvchusv">
+                        <div class="petPrimary body"></div>
+                        <div class="petSecondary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type b1 l2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type n1 d2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type r1 a2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type f1 a2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/quadruped/
+                        horns_1.png
+                        carapace.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/male.svg">Combined Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .oobpvnrdkooqghinlvjtftygvwnrnslxiwhtslhdjqeqxkusvvxdtitasrbpuayp *, .oobpvnrdkooqghinlvjtftygvwnrnslxiwhtslhdjqeqxkusvvxdtitasrbpuayp *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/fur.png);
+                            --trait: url(/static/assets/glide/horns_1.png);
+                        }
+
+                        .oobpvnrdkooqghinlvjtftygvwnrnslxiwhtslhdjqeqxkusvvxdtitasrbpuayp *::after {
+                            --primaryColor: hsl(152, 2%, 15%);
+                            --secondaryColor: hsl(321, 46%, 47%);
+                            --highlightColor: hsl(254, 13%, 77%);
+                        }
+                    </style>
+                    <div class="imgholder oobpvnrdkooqghinlvjtftygvwnrnslxiwhtslhdjqeqxkusvvxdtitasrbpuayp">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type b1 f2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type c1 s2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type m1 a2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type f1 m2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        horns_1.png
+                        fur.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/male.svg">Combined Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .uqfxjlxafohcfhvtfrbfpxoqmvgraszhtphohcxnruhcvpjvrnwknznzdjuggkpi *, .uqfxjlxafohcfhvtfrbfpxoqmvgraszhtphohcxnruhcvpjvrnwknznzdjuggkpi *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/quadruped/base.png);
+                            --eyes: url(/static/assets/quadruped/eye.png);
+                            --sclera: url(/static/assets/quadruped/eye_white.png);
+                            --skin: url(/static/assets/quadruped/carapace.png);
+                            --trait: url(/static/assets/quadruped/horns_1.png);
+                        }
+
+                        .uqfxjlxafohcfhvtfrbfpxoqmvgraszhtphohcxnruhcvpjvrnwknznzdjuggkpi *::after {
+                            --primaryColor: hsl(152, 4%, 45%);
+                            --secondaryColor: hsl(314, 59%, 83%);
+                            --highlightColor: hsl(266, 31%, 65%);
+                        }
+                    </style>
+                    <div class="imgholder uqfxjlxafohcfhvtfrbfpxoqmvgraszhtphohcxnruhcvpjvrnwknznzdjuggkpi">
+                        <div class="petPrimary body"></div>
+                        <div class="petSecondary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type w1 f2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type c1 d2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type m1 a2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type f1 a2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/quadruped/
+                        horns_1.png
+                        carapace.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/male.svg">Combined Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .ztqlxwxfhulycykrmxwgmdcixwrwjgttigvjejlyljlzidwfbujaeiptmbqcgjmi *, .ztqlxwxfhulycykrmxwgmdcixwrwjgttigvjejlyljlzidwfbujaeiptmbqcgjmi *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/quadruped/base.png);
+                            --eyes: url(/static/assets/quadruped/eye.png);
+                            --sclera: url(/static/assets/quadruped/eye_white.png);
+                            --skin: url(/static/assets/quadruped/carapace.png);
+                            --trait: url(/static/assets/quadruped/horns_1.png);
+                        }
+
+                        .ztqlxwxfhulycykrmxwgmdcixwrwjgttigvjejlyljlzidwfbujaeiptmbqcgjmi *::after {
+                            --primaryColor: hsl(120, 0%, 13%);
+                            --secondaryColor: hsl(330, 50%, 52%);
+                            --highlightColor: hsl(252, 32%, 75%);
+                        }
+                    </style>
+                    <div class="imgholder ztqlxwxfhulycykrmxwgmdcixwrwjgttigvjejlyljlzidwfbujaeiptmbqcgjmi">
+                        <div class="petPrimary body"></div>
+                        <div class="petSecondary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type b1 f2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type n1 s2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type r1 m2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type f1 f2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/quadruped/
+                        horns_1.png
+                        carapace.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/male.svg">Combined Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .cwwrselavelkdfdzxdwrdwczlekuoipreuldavgrvgfhknqxhcskgyvjkepxkvil *, .cwwrselavelkdfdzxdwrdwczlekuoipreuldavgrvgfhknqxhcskgyvjkepxkvil *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/fur.png);
+                            --trait: url(/static/assets/glide/horns_1.png);
+                        }
+
+                        .cwwrselavelkdfdzxdwrdwczlekuoipreuldavgrvgfhknqxhcskgyvjkepxkvil *::after {
+                            --primaryColor: hsl(156, 0%, 50%);
+                            --secondaryColor: hsl(345, 32%, 83%);
+                            --highlightColor: hsl(241, 25%, 63%);
+                        }
+                    </style>
+                    <div class="imgholder cwwrselavelkdfdzxdwrdwczlekuoipreuldavgrvgfhknqxhcskgyvjkepxkvil">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type w1 f2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type n1 d2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type m1 m2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type f1 a2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        horns_1.png
+                        fur.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/female.svg">Combined Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .jyimsyqysewxfyfuzdspssyzfqjarmumkjzdhvjdnrofteigkqqcsjlnntwavcjv *, .jyimsyqysewxfyfuzdspssyzfqjarmumkjzdhvjdnrofteigkqqcsjlnntwavcjv *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/carapace.png);
+                            --trait: url(/static/assets/glide/horns_1.png);
+                        }
+
+                        .jyimsyqysewxfyfuzdspssyzfqjarmumkjzdhvjdnrofteigkqqcsjlnntwavcjv *::after {
+                            --primaryColor: hsl(155, 9%, 49%);
+                            --secondaryColor: hsl(317, 51%, 62%);
+                            --highlightColor: hsl(252, 15%, 60%);
+                        }
+                    </style>
+                    <div class="imgholder jyimsyqysewxfyfuzdspssyzfqjarmumkjzdhvjdnrofteigkqqcsjlnntwavcjv">
+                        <div class="petPrimary body"></div>
+                        <div class="petSecondary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type r1 f2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type n1 s2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type r1 a2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type f1 a2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        horns_1.png
+                        carapace.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/female.svg">Bejnamin</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .xkdmnnyxaxilyacpbhsmuxjqzbudyzxolhjlroiucfgtjualznjodrjdnhkdkncp *, .xkdmnnyxaxilyacpbhsmuxjqzbudyzxolhjlroiucfgtjualznjodrjdnhkdkncp *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/fur.png);
+                            --trait: url(/static/assets/glide/horns_1.png);
+                        }
+
+                        .xkdmnnyxaxilyacpbhsmuxjqzbudyzxolhjlroiucfgtjualznjodrjdnhkdkncp *::after {
+                            --primaryColor: hsl(144, 0%, 63%);
+                            --secondaryColor: hsl(345, 25%, 86%);
+                            --highlightColor: hsl(262, 30%, 74%);
+                        }
+                    </style>
+                    <div class="imgholder xkdmnnyxaxilyacpbhsmuxjqzbudyzxolhjlroiucfgtjualznjodrjdnhkdkncp">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type b1 f2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type n1 d2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type m1 a2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type f1 a2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        horns_1.png
+                        fur.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/female.svg">Combined Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .uupcqgjkvxuaxeiswqtjznngeptdbsegfmvhhuhyqlvqjtmgpvjfmuwosifbqaqb *, .uupcqgjkvxuaxeiswqtjznngeptdbsegfmvhhuhyqlvqjtmgpvjfmuwosifbqaqb *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/glide/base.png);
+                            --eyes: url(/static/assets/glide/eye.png);
+                            --sclera: url(/static/assets/glide/eye_white.png);
+                            --skin: url(/static/assets/glide/scales.png);
+                            --trait: url(/static/assets/glide/horns_1.png);
+                        }
+
+                        .uupcqgjkvxuaxeiswqtjznngeptdbsegfmvhhuhyqlvqjtmgpvjfmuwosifbqaqb *::after {
+                            --primaryColor: hsl(158, 65%, 32%);
+                            --secondaryColor: hsl(283, 54%, 93%);
+                            --highlightColor: hsl(352, 77%, 63%);
+                        }
+                    </style>
+                    <div class="imgholder uupcqgjkvxuaxeiswqtjznngeptdbsegfmvhhuhyqlvqjtmgpvjfmuwosifbqaqb">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type c1 f2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type c1 s2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type r1 m2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type f1 l2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/glide/
+                        horns_1.png
+                        scales.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/male.svg">Combined Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .pdlucphcvcvempvanquruycrclvzmgdhiolitkdxtigowgxiobeqtivalhcwchub *, .pdlucphcvcvempvanquruycrclvzmgdhiolitkdxtigowgxiobeqtivalhcwchub *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/quadruped/base.png);
+                            --eyes: url(/static/assets/quadruped/eye.png);
+                            --sclera: url(/static/assets/quadruped/eye_white.png);
+                            --skin: url(/static/assets/quadruped/feathers.png);
+                            --trait: url(/static/assets/quadruped/horns_1.png);
+                        }
+
+                        .pdlucphcvcvempvanquruycrclvzmgdhiolitkdxtigowgxiobeqtivalhcwchub *::after {
+                            --primaryColor: hsl(153, 65%, 56%);
+                            --secondaryColor: hsl(309, 49%, 85%);
+                            --highlightColor: hsl(348, 80%, 66%);
+                        }
+                    </style>
+                    <div class="imgholder pdlucphcvcvempvanquruycrclvzmgdhiolitkdxtigowgxiobeqtivalhcwchub">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type c1 f2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type c1 s2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type r1 w2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type f1 m2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/quadruped/
+                        horns_1.png
+                        feathers.png
+                    -->
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-info">
+                    <div class="pet-name">
+                        <h2><img class="genderSymbol" src="/static/male.svg">Combined Pet</h2>
+                    </div>
+                    <hr>
+                    <p></p>
+                    <style>
+                        .uoyjacqfbfbmzqzvdujmrrotlqlovhsqlobpefrnpfzwbehuhqgtlqihdziybtkh *, .uoyjacqfbfbmzqzvdujmrrotlqlovhsqlobpefrnpfzwbehuhqgtlqihdziybtkh *::after {
+                            --pos: 8;
+                            --body: url(/static/assets/quadruped/base.png);
+                            --eyes: url(/static/assets/quadruped/eye.png);
+                            --sclera: url(/static/assets/quadruped/eye_white.png);
+                            --skin: url(/static/assets/quadruped/scales.png);
+                            --trait: url(/static/assets/quadruped/horns_1.png);
+                        }
+
+                        .uoyjacqfbfbmzqzvdujmrrotlqlovhsqlobpefrnpfzwbehuhqgtlqihdziybtkh *::after {
+                            --primaryColor: hsl(40, 19%, 60%);
+                            --secondaryColor: hsl(80, 42%, 42%);
+                            --highlightColor: hsl(43, 38%, 62%);
+                        }
+                    </style>
+                    <div class="imgholder uoyjacqfbfbmzqzvdujmrrotlqlovhsqlobpefrnpfzwbehuhqgtlqihdziybtkh">
+                        <div class="petPrimary body"></div>
+                        <div class="petPrimary skin"></div>
+                        <div class="petSecondary trait"></div>
+                        <div class="petHighlights eyes"></div>
+                        <div class="petSclera"></div>
+
+                    </div>
+                    <hr>
+                    <div class="symbol-types">
+                    
+                        <div class="symbol-type f1 f2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type w1 w2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                        <div class="symbol-type f1 w2">
+                            <div class="shadow1"></div>
+                            <div class="shadow2"></div>
+                            <div class="half1"></div>
+                            <div class="half2"></div>
+                        </div>
+                        
+                    </div>
+                    <!--
+                        assets/quadruped/
+                        horns_1.png
+                        scales.png
+                    -->
+                </div>
+            </div>
+        
+    </div>
+
+    </div>
+
+</body></html>

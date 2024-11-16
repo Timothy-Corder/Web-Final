@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block title %}Settings{% endblock title %}
+
+{% block body %}
+<h1>Settings</h1>
+
+<form id="quality-form">
+  <div class="form-group">
+    <label for="quality">Quality:</label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="quality" id="quality-low" value="low">
+      <label class="form-check-label" for="quality-low">Low</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="quality" id="quality-med" value="med">
+      <label class="form-check-label" for="quality-med">Medium</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="quality" id="quality-high" value="high">
+      <label class="form-check-label" for="quality-high">High</label>
+    </div>
+  </div>
+</form>
+
+<script>
+  // Initialize the form based on stored setting
+  document.addEventListener('DOMContentLoaded', function () {
+    const savedQuality = localStorage.getItem('quality') || 'med';
+    document.querySelector(`input[value="${savedQuality}"]`).checked = true;
+  });
+
+  // Store the selected quality when the user changes it
+  document.getElementById('quality-form').addEventListener('change', function (event) {
+    if (event.target.name === 'quality') {
+      localStorage.setItem('quality', event.target.value);
+      alert(`Quality set to ${event.target.value}`);
+    }
+  });
+</script>
+{% endblock %}

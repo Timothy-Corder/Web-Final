@@ -1,45 +1,105 @@
 {% extends "layout.html" %}
-
 {% load static %}
 {% load custom_filters %}
 
+
+{% block title %}Hatchery{% endblock %}
+
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'gameui/eggView.css' %}">
+<link rel="stylesheet" href="{% static 'gameui/typeStyle.css' %}">
 {% endblock %}
 
-
 {% block body %}
-    <div id="cardcontainer">
-        {% for egg in eggs %}
-            <div class="card">
-                <div class="card-info">
-                    <div class="pet-name">
-                        <h2>Egg</h2>
-                    </div>
-                    <hr>
-                    <p></p>
-                    <div class="imgholder">
-                        <div class="petPrimary body"></div>
-                        <div class="{{ pet.features.skin|includes:'carapace'|yesno:'petSecondary,petPrimary' }} skin"></div>
-                        <div class="pet{{ pet.features.color }} trait"></div>
-                        <div class="petHighlights eyes"></div>
-                        <div class="petSclera"></div>
+<div id="cardcontainer">
+    {% for egg in eggs %}
+    <div class="card">
+        <div class="card-info">
+            <div class="egg-details">
+                <h2>Egg #{{ forloop.counter }}</h2>
+            </div>
 
-                    </div>
-                    <hr>
-                    <div class="pet-types">
-                        {% for type in pet.types %}
-                            <div class="typediv {{ pet.unparsedTypes|get_item:type|get_item:'c1' }}1 {{ pet.unparsedTypes|get_item:type|get_item:'c2' }}2">{{ type|title }}</div>
-                            <br>
-                        {% endfor %}
-                    </div>
-                    <!--
-                        {{ pet.features.walk }}
-                        {{ pet.features.trait }}
-                        {{ pet.features.skin }}
-                    -->
+            <hr>
+
+            <div class="imgholder">
+                {# Egg visualization #}
+                <div class="eggPrimary" style="background-color: #{{ egg.color1 }}"></div>
+                <div class="eggSecondary" style="background-color: #{{ egg.color2 }}"></div>
+            </div>
+
+            <hr>
+
+            <div class="egg-info">
+                {% if egg.mother %}
+                <div class="parent-info">
+                    <span class="label">Mother:</span>
+                    <span class="value">{{ egg.mother.name }}</span>
+                </div>
+                {% endif %}
+                
+                {% if egg.father %}
+                <div class="parent-info">
+                    <span class="label">Father:</span>
+                    <span class="value">{{ egg.father.name }}</span>
+                </div>
+                {% endif %}
+
+                <div class="hatch-timer">
+                    <span class="label">Hatches in:</span>
+                    <span class="value countdown" data-hatchdate="{{ egg.hatchDate|date:'c' }}">
+                        Calculating...
+                    </span>
                 </div>
             </div>
-        {% endfor %}
+        </div>
     </div>
+    {% endfor %}
+</div>
+
+<script>
+function updateCountdown() {
+    document.querySelectorAll('.countdown').forEach(timer => {
+        const hatchDate = new Date(timer.dataset.hatchdate);
+        const now = new Date();
+        const diff = hatchDate - now;
+
+        if (diff <= 0) {
+            timer.innerHTML = '<span class="ready">Ready to hatch!</span>';
+            timer.classList.add('ready-to-hatch');
+            return;
+        }
+
+        // Calculate time units
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        // Build the display string
+        let timeString = '';
+        if (days > 0) timeString += `${days}d `;
+        if (hours > 0 || days > 0) timeString += `${hours}h `;
+        if (minutes > 0 || hours > 0 || days > 0) timeString += `${minutes}m `;
+        timeString += `${seconds}s`;
+
+        timer.textContent = timeString;
+    });
+}
+
+// Update immediately and then every second
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+
+<style>
+.ready-to-hatch {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.countdown {
+    font-family: monospace;
+    min-width: 150px;
+    display: inline-block;
+}
+</style>
 {% endblock %}
