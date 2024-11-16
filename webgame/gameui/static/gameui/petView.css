@@ -197,3 +197,7 @@ hr {
 .pet-name * {
     margin: 0;
 }
+
+.pixel * {
+    image-rendering: pixelated;
+}

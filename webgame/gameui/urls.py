@@ -29,5 +29,6 @@ urlpatterns = [
     path("login", views.login_view, name='login'),
     path("register", views.register_view, name='register'),
     path("settings", views.settings, name='settings'),
+    path('settingspost', views.settings_post, name='settings_post'),
     path('admin-breed', views.aBreed, name='admin-breed')
 ]

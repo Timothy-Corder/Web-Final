@@ -9,32 +9,50 @@
   <div class="form-group">
     <label for="quality">Quality:</label>
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="quality" id="quality-low" value="low">
+      <input class="form-check-input" type="radio" name="quality" id="quality-low" value="0" 
+        {% if settings.quality == '_x1' %}checked{% endif %}>
       <label class="form-check-label" for="quality-low">Low</label>
     </div>
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="quality" id="quality-med" value="med">
+      <input class="form-check-input" type="radio" name="quality" id="quality-med" value="1" 
+        {% if settings.quality == '_x4' %}checked{% endif %}>
       <label class="form-check-label" for="quality-med">Medium</label>
     </div>
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="quality" id="quality-high" value="high">
+      <input class="form-check-input" type="radio" name="quality" id="quality-high" value="2" 
+        {% if settings.quality == '_x8' %}checked{% endif %}>
       <label class="form-check-label" for="quality-high">High</label>
     </div>
   </div>
+  <button type="button" id="save-button" class="btn btn-primary">Save</button>
 </form>
 
 <script>
-  // Initialize the form based on stored setting
-  document.addEventListener('DOMContentLoaded', function () {
-    const savedQuality = localStorage.getItem('quality') || 'med';
-    document.querySelector(`input[value="${savedQuality}"]`).checked = true;
-  });
+  // Function to send POST request with the selected quality setting
+  async function sendQualitySetting(quality) {
+    try {
+      const response = await fetch('/settingspost', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ quality })
+      });
 
-  // Store the selected quality when the user changes it
-  document.getElementById('quality-form').addEventListener('change', function (event) {
-    if (event.target.name === 'quality') {
-      localStorage.setItem('quality', event.target.value);
-      alert(`Quality set to ${event.target.value}`);
+      if (response.ok) {
+        window.location.reload()
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred while saving the settings.');
+    }
+  }
+
+  // Event listener for the "Save" button
+  document.getElementById('save-button').addEventListener('click', function () {
+    const selectedQuality = document.querySelector('input[name="quality"]:checked');
+    if (selectedQuality) {
+      sendQualitySetting(selectedQuality.value);
     }
   });
 </script>

@@ -245,9 +245,9 @@ def parseFeatures(genes:str):
     }
 
     if genes[30] in coverIndex:
-        skinType = f'{coverIndex[genes[30]]}.png'
+        skinType = f'{coverIndex[genes[30]]}'
     else:
-        skinType = 'skin.png'
+        skinType = 'skin'
 
     featureIndex = {
         'a': 'spots',
@@ -261,9 +261,9 @@ def parseFeatures(genes:str):
     }
 
     if genes[31] in featureIndex:
-        traitType = f'{featureIndex[genes[31]]}.png'
+        traitType = f'{featureIndex[genes[31]]}'
     else:
-        traitType = 'none.png'
+        traitType = 'none'
 
 
     colors = {
@@ -291,17 +291,16 @@ def parseFeatures(genes:str):
     # --- Code for pre-biped/slither implementation
     if walkType not in ['quadruped', 'glide']:
         walkType = 'glide'
-
     # --- End
     
-    traitCol = colors[traitType[:-4]]
+    traitCol = colors[traitType]
 
     features = {
-        'walk': f'assets/{walkType}/',
+        'walk': walkType,
         'skin': skinType,
         'trait': traitType,
         'color': traitCol,
-        'position': positions[traitType[:-4]]
+        'position': positions[traitType]
     }
 
 
@@ -529,12 +528,25 @@ def starterPets(master:User):
     return pet1, pet2, pet3, pet4
 
 def get_settings(user:User):
+    qualityMap = ['_x1','_x4','_x8']
     try:
         profile = UserProfile.objects.get(user=user)
     except UserProfile.DoesNotExist:
         profile = UserProfile(quality=0,user=user)
         profile.save()
     settings = {}
-    settings['quality'] = profile
+    settings['quality'] = qualityMap[profile.quality]
     
     return settings
+
+def set_settings(user:User,**settings):
+    try:
+        profile = UserProfile.objects.get(user=user)
+    except UserProfile.DoesNotExist:
+        profile = UserProfile(quality=0,user=user)
+        profile.save()
+
+    for setting, value in settings.items():
+        print(setting,value)
+        setattr(profile, setting, value)
+    profile.save()

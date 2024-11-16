@@ -1,14 +1,25 @@
 from django.shortcuts import render, redirect
-from django.http import HttpRequest, HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpRequest, HttpResponseRedirect, HttpResponseForbidden, JsonResponse
 from django.urls import reverse
 from django.db import IntegrityError, models
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from .models import User, Pet, Egg
-from .util import parsePet, randomPet, combinePets, starterPets, hatch
+from .util import parsePet, randomPet, combinePets, starterPets, hatch, get_settings, set_settings
+import json
 
 # Create your views here.
 
+@csrf_exempt
+def settings_post(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        quality = data.get('quality')
+        set_settings(request.user,quality=int(quality))
+        print(f"Quality setting received: {quality}")
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'error'}, status=400)
 
 @login_required(login_url='login')
 def homepage(request:HttpRequest):
@@ -88,7 +99,8 @@ def pets(request:HttpRequest):
     
     return render(request, 'pets.html', {
         'title':'My Pets',
-        'pets':parsedPets
+        'pets':parsedPets,
+        'settings':get_settings(request.user)
     })
 
 @login_required(login_url='login')
@@ -126,4 +138,5 @@ def hatcher(request:HttpRequest):
 
 @login_required(login_url='login')
 def settings(request: HttpRequest):
-    return render(request, 'settings.html')
+    print(get_settings(request.user))
+    return render(request, 'settings.html', {'settings':get_settings(request.user)})

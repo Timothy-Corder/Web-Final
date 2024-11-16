@@ -10,7 +10,85 @@
 <link rel="stylesheet" href="{% static 'gameui/symbolStyle.css' %}">
 {% endblock %}
 
-{% block internal_css %}{% endblock internal_css %}
+{% block internal_css %}
+<style>
+    /* First type components */
+    .w1 .half1 { background-image: url(/static/assets/symbols{{ settings.quality }}/w1.png); }
+    .w1 .shadow1 { background-image: url(/static/assets/symbols{{ settings.quality }}/sw1.png); }
+    
+    .f1 .half1 { background-image: url(/static/assets/symbols{{ settings.quality }}/f1.png); }
+    .f1 .shadow1 { background-image: url(/static/assets/symbols{{ settings.quality }}/sf1.png); }
+    
+    .r1 .half1 { background-image: url(/static/assets/symbols{{ settings.quality }}/r1.png); }
+    .r1 .shadow1 { background-image: url(/static/assets/symbols{{ settings.quality }}/sr1.png); }
+    
+    .a1 .half1 { background-image: url(/static/assets/symbols{{ settings.quality }}/a1.png); }
+    .a1 .shadow1 { background-image: url(/static/assets/symbols{{ settings.quality }}/sa1.png); }
+    
+    .c1 .half1 { background-image: url(/static/assets/symbols{{ settings.quality }}/c1.png); }
+    .c1 .shadow1 { background-image: url(/static/assets/symbols{{ settings.quality }}/sc1.png); }
+    
+    .l1 .half1 { background-image: url(/static/assets/symbols{{ settings.quality }}/l1.png); }
+    .l1 .shadow1 { background-image: url(/static/assets/symbols{{ settings.quality }}/sl1.png); }
+    
+    .d1 .half1 { background-image: url(/static/assets/symbols{{ settings.quality }}/d1.png); }
+    .d1 .shadow1 { background-image: url(/static/assets/symbols{{ settings.quality }}/sd1.png); }
+    
+    .m1 .half1 { background-image: url(/static/assets/symbols{{ settings.quality }}/m1.png); }
+    .m1 .shadow1 { background-image: url(/static/assets/symbols{{ settings.quality }}/sm1.png); }
+    
+    .b1 .half1 { background-image: url(/static/assets/symbols{{ settings.quality }}/b1.png); }
+    .b1 .shadow1 { background-image: url(/static/assets/symbols{{ settings.quality }}/sb1.png); }
+    
+    .s1 .half1 { background-image: url(/static/assets/symbols{{ settings.quality }}/s1.png); }
+    .s1 .shadow1 { background-image: url(/static/assets/symbols{{ settings.quality }}/ss1.png); }
+    
+    .p1 .half1 { background-image: url(/static/assets/symbols{{ settings.quality }}/p1.png); }
+    .p1 .shadow1 { background-image: url(/static/assets/symbols{{ settings.quality }}/sp1.png); }
+    
+    /* Second type components */
+    .w2 .half2 { background-image: url(/static/assets/symbols{{ settings.quality }}/w2.png); }
+    .w2 .shadow2 { background-image: url(/static/assets/symbols{{ settings.quality }}/sw2.png); }
+    
+    .f2 .half2 { background-image: url(/static/assets/symbols{{ settings.quality }}/f2.png); }
+    .f2 .shadow2 { background-image: url(/static/assets/symbols{{ settings.quality }}/sf2.png); }
+    
+    .r2 .half2 { background-image: url(/static/assets/symbols{{ settings.quality }}/r2.png); }
+    .r2 .shadow2 { background-image: url(/static/assets/symbols{{ settings.quality }}/sr2.png); }
+    
+    .a2 .half2 { background-image: url(/static/assets/symbols{{ settings.quality }}/a2.png); }
+    .a2 .shadow2 { background-image: url(/static/assets/symbols{{ settings.quality }}/sa2.png); }
+    
+    .c2 .half2 { background-image: url(/static/assets/symbols{{ settings.quality }}/c2.png); }
+    .c2 .shadow2 { background-image: url(/static/assets/symbols{{ settings.quality }}/sc2.png); }
+    
+    .l2 .half2 { background-image: url(/static/assets/symbols{{ settings.quality }}/l2.png); }
+    .l2 .shadow2 { background-image: url(/static/assets/symbols{{ settings.quality }}/sl2.png); }
+    
+    .d2 .half2 { background-image: url(/static/assets/symbols{{ settings.quality }}/d2.png); }
+    .d2 .shadow2 { background-image: url(/static/assets/symbols{{ settings.quality }}/sd2.png); }
+    
+    .m2 .half2 { background-image: url(/static/assets/symbols{{ settings.quality }}/m2.png); }
+    .m2 .shadow2 { background-image: url(/static/assets/symbols{{ settings.quality }}/sm2.png); }
+    
+    .b2 .half2 { background-image: url(/static/assets/symbols{{ settings.quality }}/b2.png); }
+    .b2 .shadow2 { background-image: url(/static/assets/symbols{{ settings.quality }}/sb2.png); }
+    
+    .s2 .half2 { background-image: url(/static/assets/symbols{{ settings.quality }}/s2.png); }
+    .s2 .shadow2 { background-image: url(/static/assets/symbols{{ settings.quality }}/ss2.png); }
+    
+    .p2 .half2 { background-image: url(/static/assets/symbols{{ settings.quality }}/p2.png); }
+    .p2 .shadow2 { background-image: url(/static/assets/symbols{{ settings.quality }}/sp2.png); }
+    
+    /* Neutral */
+    
+    .n1 .half1, .n2 .half1 { background-image: url(/static/assets/symbols{{ settings.quality }}/n1.png); }
+    .n1 .shadow1, .n2 .shadow1 { background-image: url(/static/assets/symbols{{ settings.quality }}/sn1.png); }
+    
+    .n2 .half2, .n1 .half2 { background-image: url(/static/assets/symbols{{ settings.quality }}/n2.png); }
+    .n2 .shadow2, .n1 .shadow2 { background-image: url(/static/assets/symbols{{ settings.quality }}/sn2.png); }
+</style>
+{% endblock internal_css %}
 
 {% block body %}
     <div id="cardcontainer">
@@ -25,11 +103,11 @@
                     <style>
                         .{{ pet.uuid }} *, .{{ pet.uuid }} *::after {
                             --pos: {{ pet.features.position }};
-                            --body: url({% static pet.features.walk %}base.png);
-                            --eyes: url({% static pet.features.walk %}eye.png);
-                            --sclera: url({% static pet.features.walk %}eye_white.png);
-                            --skin: url({% static pet.features.walk %}{{ pet.features.skin }});
-                            --trait: url({% static pet.features.walk %}{{ pet.features.trait }});
+                            --body: url({% static 'assets' %}/{{ pet.features.walk }}{{ settings.quality }}/base.png);
+                            --eyes: url({% static 'assets' %}/{{ pet.features.walk }}{{ settings.quality }}/eye.png);
+                            --sclera: url({% static 'assets' %}/{{ pet.features.walk }}{{ settings.quality }}/eye_white.png);
+                            --skin: url({% static 'assets' %}/{{ pet.features.walk }}{{ settings.quality }}/{{ pet.features.skin }}.png);
+                            --trait: url({% static 'assets' %}/{{ pet.features.walk }}{{ settings.quality }}/{{ pet.features.trait }}.png);
                         }
 
                         .{{ pet.uuid }} *::after {
@@ -38,7 +116,7 @@
                             --highlightColor: hsl({{ pet.highlights.hue }}, {{ pet.highlights.saturation }}%, {{ pet.highlights.luminosity }}%);
                         }
                     </style>
-                    <div class="imgholder {{ pet.uuid }}">
+                    <div class="imgholder {{ pet.uuid }} {% if settings.quality == '_x1' %}pixel{% endif %}">
                         <div class="petPrimary body"></div>
                         <div class="{{ pet.features.skin|includes:'carapace'|yesno:'petSecondary,petPrimary' }} skin"></div>
                         <div class="pet{{ pet.features.color }} trait"></div>
@@ -49,7 +127,7 @@
                     <hr>
                     <div class="symbol-types">
                     {% for type in pet.types %}
-                        <div class="symbol-type {{ pet.unparsedTypes|get_item:type|get_item:'c1' }}1 {{ pet.unparsedTypes|get_item:type|get_item:'c2' }}2">
+                        <div class="symbol-type {{ pet.unparsedTypes|get_item:type|get_item:'c1' }}1 {{ pet.unparsedTypes|get_item:type|get_item:'c2' }}2 {% if settings.quality == '_x1' %}pixel{% endif %}">
                             <div class="shadow1"></div>
                             <div class="shadow2"></div>
                             <div class="half1"></div>
@@ -66,51 +144,4 @@
             </div>
         {% endfor %}
     </div>
-<script>
-    // Get quality setting from localStorage
-    const quality = localStorage.getItem('quality') || 'med';
-
-    // Map quality settings to suffix
-    const qualityMap = {
-    'low': 'x1',
-    'med': 'x4',
-    'high': 'x8'
-    };
-
-    const suffix = qualityMap[quality];
-
-    // Function to update asset paths in style tags
-    function updateAssetPaths() {
-        // Get all style tags
-        const styleTags = document.getElementsByTagName('style');
-
-        for (let styleTag of styleTags) {
-            let cssText = styleTag.textContent;
-            
-            // Update quadruped paths
-            cssText = cssText.replace(
-            /url\(\/static\/assets\/quadruped\//g, 
-            `url(/static/assets/quadruped_${suffix}/`
-            );
-            
-            // Update glide paths
-            cssText = cssText.replace(
-            /url\(\/static\/assets\/glide\//g, 
-            `url(/static/assets/glide_${suffix}/`
-            );
-            
-            // Update symbols paths
-            cssText = cssText.replace(
-            /url\(\/static\/assets\/symbols\//g, 
-            `url(/static/assets/symbols_${suffix}/`
-            );
-            
-            // Update the style tag content
-            styleTag.textContent = cssText;
-        }
-    }
-
-    // Run the update when the document loads
-    document.addEventListener("DOMContentLoaded", updateAssetPaths)
-</script>
 {% endblock %}
