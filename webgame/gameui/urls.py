@@ -30,5 +30,9 @@ urlpatterns = [
     path("register", views.register_view, name='register'),
     path("settings", views.settings, name='settings'),
     path('settingspost', views.settings_post, name='settings_post'),
-    path('admin-breed', views.aBreed, name='admin-breed')
+    path('determine-gender/<int:egg_id>/', views.determine_gender, name='determine-gender'),
+    path('hatch-egg/<int:egg_id>/', views.hatch_egg, name='hatch-egg'),
+    path('breed', views.breed_pets, name='breed'),
+    path('wibblywobbly', views.timeskip, name='timeskip')
+    # path('admin-breed', views.aBreed, name='admin-breed')
 ]

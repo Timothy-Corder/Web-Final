@@ -1,7 +1,9 @@
 from django.db import models
+from django.shortcuts import get_object_or_404
 from .models import Pet, User, Egg, UserProfile
 import random
 from math import sqrt
+import datetime
 
 def clamp(n, smallest, largest): return max(smallest, min(n, largest))
 
@@ -409,7 +411,7 @@ def mixColors(color1: tuple[int, int, int], color2: tuple[int, int, int], deviat
         'luminosity': l
 }
 
-def combinePets(pet1:Pet,pet2:Pet,master:User,mutationChance:float=0.05):
+def combinePets(pet1:Pet,pet2:Pet,mutationChance:float=0.05):
     alpha = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
     rarityIndex = {
         'n': 8,
@@ -503,14 +505,14 @@ def combinePets(pet1:Pet,pet2:Pet,master:User,mutationChance:float=0.05):
     print(childGenome)
     print(len(childGenome))
 
-    return Pet(genes=childGenome,master=master,age=0.0,name='Combined Pet',gender=random.choice([True, False]),letterId=generateUUID(64))
+    return childGenome
     # 
     # child.save()
 
-def hatch(egg:Egg, name:str):
-    newGenome = combinePets(egg.mother,egg.father)
+def hatch(egg:Egg, name:str, gender:bool):
+    newGenome = combinePets(egg.mother,egg.father,)
 
-    hatchling = Pet(genes=newGenome, master=egg.master, name=name, age = 0.0, gender=random.choice([True, False]), letterId=generateUUID(64))
+    hatchling = Pet(genes=newGenome, master=egg.master, name=name, age = 0.0, gender=gender, letterId=generateUUID(64))
 
     egg.delete()
     return hatchling
@@ -550,3 +552,46 @@ def set_settings(user:User,**settings):
         print(setting,value)
         setattr(profile, setting, value)
     profile.save()
+    
+    
+def getPalestColor(primary, secondary, highlights):
+    # Compare luminosity (the 'l' value) to get the palest color
+    colors = [primary, secondary, highlights]
+    palest_color = min(colors, key=lambda c: c['luminosity'])
+    return palest_color
+
+def getMostSaturatedColor(primary, secondary, highlights):
+    # Compare saturation (the 's' value) to get the most saturated color
+    colors = [primary, secondary, highlights]
+    most_saturated_color = max(colors, key=lambda c: c['saturation'])
+    return most_saturated_color
+
+def makeEgg(pet1_id:int, pet2_id:int, master:User):
+    pet1 = get_object_or_404(Pet, id=pet1_id)
+    pet2 = get_object_or_404(Pet, id=pet2_id)
+
+    # Ensure the selected pets belong to the user and are of opposite genders
+    if pet1.master == master and pet2.master == master and pet1.gender != pet2.gender:
+        # Generate the child's genome using combinePets
+        child_genome = combinePets(pet1, pet2)
+        
+        # Parse colors for parent1 and parent2
+        primary_color_1, secondary_color_1, highlights_1 = parseColors(pet1.genes)
+        primary_color_2, secondary_color_2, highlights_2 = parseColors(pet2.genes)
+
+        # Get the palest color from parent1
+        palest_color = getPalestColor(primary_color_1, secondary_color_1, highlights_1)
+        # Get the most saturated color from parent2
+        most_saturated_color = getMostSaturatedColor(primary_color_2, secondary_color_2, highlights_2)
+
+        # Create a new egg with the determined colors
+        new_egg = Egg(
+            color1=''.join(format(palest_color[c], '02x') for c in ['hue', 'saturation', 'luminosity']),
+            color2=''.join(format(most_saturated_color[c], '02x') for c in ['hue', 'saturation', 'luminosity']),
+            mother=pet1 if not pet1.gender else pet2,
+            father=pet1 if pet1.gender else pet2,
+            master=master,
+            hatchDate=datetime.datetime.now() + datetime.timedelta(days=3)
+        )
+        
+        return new_egg

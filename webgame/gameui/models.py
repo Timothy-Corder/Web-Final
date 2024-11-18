@@ -26,3 +26,6 @@ class Egg(models.Model):
     mother = models.ForeignKey(Pet, related_name='egg_mother', on_delete=models.PROTECT, null=True)
     father = models.ForeignKey(Pet, related_name='egg_father', on_delete=models.PROTECT, null=True)
     master = models.ForeignKey(User, on_delete=models.CASCADE)
+    # Add these fields:
+    determined_gender = models.BooleanField(null=True)  # True for male, False for female, None if not determined
+    gender_determined_at = models.DateTimeField(null=True, blank=True)

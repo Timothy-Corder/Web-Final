@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponseForbidden, JsonResponse
 from django.urls import reverse
 from django.db import IntegrityError, models
@@ -6,8 +6,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from .models import User, Pet, Egg
-from .util import parsePet, randomPet, combinePets, starterPets, hatch, get_settings, set_settings
+from django.utils import timezone
+from .util import parsePet, randomPet, combinePets, starterPets, hatch, get_settings, set_settings, makeEgg
 import json
+import random
+import datetime
 
 # Create your views here.
 
@@ -134,9 +137,74 @@ def aBreed(request:HttpRequest):
 @login_required(login_url='login')
 def hatcher(request:HttpRequest):
     eggs = Egg.objects.filter(master=request.user)
-    return render(request, 'hatchery.html', {"eggs":eggs})
+    return render(request, 'hatchery.html', {"eggs":eggs,'settings':get_settings(request.user)})
 
 @login_required(login_url='login')
 def settings(request: HttpRequest):
     print(get_settings(request.user))
     return render(request, 'settings.html', {'settings':get_settings(request.user)})
+
+@login_required(login_url='login')
+@csrf_exempt
+def determine_gender(request, egg_id):
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Method not allowed'}, status=405)
+    
+    egg = Egg.objects.get(id=egg_id)
+    
+    # If gender was already determined, return that
+    if egg.determined_gender is not None:
+        return JsonResponse({'gender': egg.determined_gender})
+        
+    # Determine gender and save it
+    egg.determined_gender = random.choice([True,False])
+    egg.gender_determined_at = timezone.now()
+    egg.save()
+    
+    return JsonResponse({'gender': egg.determined_gender})
+
+@login_required(login_url='login')
+@csrf_exempt
+def hatch_egg(request, egg_id):
+    egg = Egg.objects.get(id=egg_id)
+    
+    # Verify the gender matches what was determined
+    if egg.determined_gender is None:
+        return JsonResponse({'error': 'Gender not determined'}, status=400)
+    
+    data = json.loads(request.body)
+    if data['gender'] != egg.determined_gender:
+        return JsonResponse({'error': 'Gender mismatch'}, status=400)
+    
+    hatchling = hatch(egg,data['name'],egg.determined_gender)
+    hatchling.save()
+    
+    return JsonResponse({}, status=200)
+
+@login_required
+def breed_pets(request:HttpRequest):
+    pets = Pet.objects.filter(master=request.user)
+    eggs = Egg.objects.filter(master=request.user)
+
+    if request.method == 'POST':
+        pet1_id = request.POST.get('pet1')
+        pet2_id = request.POST.get('pet2')
+
+        # Ensure both pets are selected and are different
+        if pet1_id and pet2_id and pet1_id != pet2_id:
+            new_egg = makeEgg(pet1_id, pet2_id, request.user)
+            new_egg.save()
+            return redirect(reverse('hatch'))
+
+    return render(request, 'breed.html', {'pets': pets, 'eggs': eggs})
+
+@login_required(login_url='login')
+def timeskip(request:HttpRequest):
+    if not request.user.is_superuser:
+        return HttpResponseForbidden()
+    
+    eggs = Egg.objects.filter(master=request.user)
+    for egg in eggs:
+        egg.hatchDate = datetime.datetime.now() - datetime.timedelta(1)
+        egg.save()
+    return redirect(reverse('hatch'))

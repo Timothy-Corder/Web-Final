@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block body %}
+<h2>Breed Your Pets</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="pet1">Select Mother:</label>
+    <select name="pet1" required>
+        <option value="">-- Select Pet --</option>
+        {% for pet in pets %}
+        {% if not pet.gender %}
+        <option value="{{ pet.id }}">{{ pet.name }}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+
+    <label for="pet2">Select Father:</label>
+    <select name="pet2" required>
+        <option value="">-- Select Pet --</option>
+        {% for pet in pets %}
+        {% if pet.gender %}
+        <option value="{{ pet.id }}">{{ pet.name }}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+
+    <button type="submit">Breed</button>
+</form>
+
+<h3>Your Eggs</h3>
+<ul>
+    {% for egg in eggs %}
+    <li>
+        Egg from {{ egg.mother.name }} and {{ egg.father.name }} - Hatches on {{ egg.hatchDate }}
+    </li>
+    {% empty %}
+    <li>No eggs yet!</li>
+    {% endfor %}
+</ul>
+{% endblock %}

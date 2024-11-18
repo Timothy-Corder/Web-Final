@@ -6,7 +6,31 @@
 {% block title %}Hatchery{% endblock %}
 
 {% block styles %}
-<link rel="stylesheet" href="{% static 'gameui/typeStyle.css' %}">
+<link rel="stylesheet" href="{% static 'gameui/eggView.css' %}">
+{% endblock %}
+
+{% block internal_css %}
+<style>
+    .eggPrimary, .eggPrimary::after {
+        --image: url({% static "assets/egg" %}{{ settings.quality }}/egg.png);
+    }
+    .eggSecondary, .eggSecondary::after {
+        --image: url({% static "assets/egg" %}{{ settings.quality }}/spots.png);
+    }
+    .eggPrimary, .eggSecondary {
+        background-image: var(--image);
+    }
+    .eggPrimary::after, .eggSecondary::after {
+        --color: inherit;
+        background-color: var(--color);
+        mask-image: var(--image);
+    }
+    {% if settings.quality == '_x1' %}
+    .eggPrimary, .eggPrimary::after, .eggSecondary, .eggSecondary::after {
+        image-rendering: pixelated;
+    }
+    {% endif %}
+</style>
 {% endblock %}
 
 {% block body %}
@@ -22,8 +46,8 @@
 
             <div class="imgholder">
                 {# Egg visualization #}
-                <div class="eggPrimary" style="background-color: #{{ egg.color1 }}"></div>
-                <div class="eggSecondary" style="background-color: #{{ egg.color2 }}"></div>
+                <div class="eggPrimary" style="--color: {{ egg.color1 }}"></div>
+                <div class="eggSecondary" style="--color: {{ egg.color2 }}"></div>
             </div>
 
             <hr>
@@ -43,11 +67,12 @@
                 </div>
                 {% endif %}
 
-                <div class="hatch-timer">
+                <div class="hatch-timer" data-egg-id="{{ egg.id }}">
                     <span class="label">Hatches in:</span>
-                    <span class="value countdown" data-hatchdate="{{ egg.hatchDate|date:'c' }}">
+                    <span class="value" data-hatchdate="{{ egg.hatchDate|date:'c' }}">
                         Calculating...
                     </span>
+                    <div class="hatch-button-container"></div>
                 </div>
             </div>
         </div>
@@ -55,51 +80,251 @@
     {% endfor %}
 </div>
 
-<script>
-function updateCountdown() {
-    document.querySelectorAll('.countdown').forEach(timer => {
-        const hatchDate = new Date(timer.dataset.hatchdate);
-        const now = new Date();
-        const diff = hatchDate - now;
+<!-- Modal for gender and name -->
+<div id="hatchModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div id="genderStep">
+            <h2>The egg is hatching!</h2>
+            <p>Wait a moment while we determine the gender...</p>
+            <div id="genderReveal" style="display: none;">
+                <div class="gender-info">
+                    <img id="genderIcon" src="" alt="Gender icon" class="gender-icon">
+                    It's a <span id="genderText"></span>!
+                </div>
+                <div class="name-input">
+                    <label for="petName">Choose a name:</label>
+                    <input type="text" id="petName" maxlength="32" placeholder="Enter name">
+                    <button onclick="submitHatch()" class="hatch-button">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        if (diff <= 0) {
-            timer.innerHTML = '<span class="ready">Ready to hatch!</span>';
-            timer.classList.add('ready-to-hatch');
+<script>
+    let currentEggId = null;
+    let currentGender = null;
+
+    function createHatchButton(container, eggId) {
+        if (container.querySelector('.hatch-button')) return;
+        
+        const button = document.createElement('button');
+        button.className = 'hatch-button';
+        button.textContent = 'Hatch';
+        button.onclick = () => startHatching(eggId);
+        
+        container.appendChild(button);
+    }
+
+    function startHatching(eggId) {
+        currentEggId = eggId;
+        
+        // Show modal
+        const modal = document.getElementById('hatchModal');
+        modal.style.display = 'block';
+        document.getElementById('genderStep').style.display = 'block';
+        document.getElementById('genderReveal').style.display = 'none';
+        
+        // Get gender from server
+        fetch(`/determine-gender/${eggId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            currentGender = data.gender;
+            const genderIcon = document.getElementById('genderIcon');
+            genderIcon.src = `{% static 'assets/' %}${currentGender ? 'male.svg' : 'female.svg'}`;
+            document.getElementById('genderText').textContent = currentGender ? 'boy' : 'girl';
+            document.getElementById('genderReveal').style.display = 'block';
+            document.getElementById('petName').focus();
+        });
+    }
+
+    function submitHatch() {
+        const name = document.getElementById('petName').value.trim();
+        if (!name) {
+            alert('Please enter a name!');
             return;
         }
 
-        // Calculate time units
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        fetch(`/hatch-egg/${currentEggId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                gender: currentGender
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.reload();
+            }
+        })
+        .catch(error => {
+            console.error('Error hatching egg:', error);
+            alert('There was an error hatching the egg. Please try again.');
+        });
+    }
 
-        // Build the display string
-        let timeString = '';
-        if (days > 0) timeString += `${days}d `;
-        if (hours > 0 || days > 0) timeString += `${hours}h `;
-        if (minutes > 0 || hours > 0 || days > 0) timeString += `${minutes}m `;
-        timeString += `${seconds}s`;
-
-        timer.textContent = timeString;
+    // Allow Enter key to submit
+    document.getElementById('petName').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            submitHatch();
+        }
     });
-}
 
-// Update immediately and then every second
-updateCountdown();
-setInterval(updateCountdown, 1000);
+    function updateTimers() {
+        const timerElements = document.querySelectorAll('.hatch-timer');
+        
+        timerElements.forEach(timerElement => {
+            const valueElement = timerElement.querySelector('.value');
+            const buttonContainer = timerElement.querySelector('.hatch-button-container');
+            const eggId = timerElement.dataset.eggId;
+            const hatchDate = new Date(valueElement.dataset.hatchdate);
+            const now = new Date();
+            const diff = hatchDate - now;
+            
+            if (diff <= 0) {
+                valueElement.textContent = 'Ready to hatch!';
+                valueElement.classList.add('ready');
+                createHatchButton(buttonContainer, eggId);
+                return;
+            }
+            
+            // Calculate time units
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            // Build the display string
+            let timeString = '';
+            if (days > 0) timeString += `${days}d `;
+            if (hours > 0 || days > 0) timeString += `${hours}h `;
+            if (minutes > 0 || hours > 0 || days > 0) timeString += `${minutes}m `;
+            timeString += `${seconds}s`;
+            
+            valueElement.textContent = timeString;
+            buttonContainer.innerHTML = '';
+        });
+    }
+
+    // Update immediately and then every second
+    updateTimers();
+    setInterval(updateTimers, 1000);
+
+    // Allow closing modal by clicking outside
+    window.onclick = function(event) {
+        const modal = document.getElementById('hatchModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
 </script>
 
 <style>
-.ready-to-hatch {
-    color: #4CAF50;
-    font-weight: bold;
-}
+    .modal {
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-.countdown {
-    font-family: monospace;
-    min-width: 150px;
-    display: inline-block;
-}
+    .modal-content {
+        background-color: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        min-width: 300px;
+        max-width: 90%;
+        position: relative;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .gender-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 20px 0;
+        font-size: 1.2em;
+    }
+
+    .gender-icon {
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+    }
+
+    .name-input {
+        margin-top: 20px;
+    }
+
+    .name-input label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    #petName {
+        margin: 10px 0;
+        padding: 8px 12px;
+        width: 80%;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 1em;
+    }
+
+    .hatch-button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1em;
+    }
+
+    .hatch-button:hover {
+        background-color: #45a049;
+        transform: translateY(-1px);
+    }
+
+    .ready {
+        color: #4CAF50;
+        font-weight: bold;
+    }
+
+    .hatch-button-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #petName {
+        margin: 10px 0;
+        padding: 8px;
+        width: 80%;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    #genderReveal {
+        margin: 20px 0;
+        font-size: 1.2em;
+    }
 </style>
 {% endblock %}
