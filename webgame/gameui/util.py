@@ -2,7 +2,6 @@ from django.db import models
 from django.shortcuts import get_object_or_404
 from .models import Pet, User, Egg, UserProfile
 import random
-from math import sqrt
 import datetime
 
 def clamp(n, smallest, largest): return max(smallest, min(n, largest))
