@@ -82,7 +82,7 @@ The project involves:
 - **Customization**: The quality of images and animations can be adjusted dynamically through user settings, found at /settings.
 
 ### Mildly Funny stuff
-- **Doctor Who?**: Superusers are able to go to `/wibblywobbly` in order to accelerate the hatching of eggs ([Wibbly-Wobbly-Timey-Wimey... stuff](https://www.youtube.com/watch?v=mwoI4BqHt3E))
+- **Doctor Who?**: Superusers are able to go to `/wibblywobbly` in order to accelerate the hatching of eggs ([Wibbly Wobbly Timey Wimey](https://www.youtube.com/watch?v=mwoI4BqHt3E))
 
 ## Future Enhancements
 Planned improvements include:
@@ -95,3 +95,7 @@ Planned improvements include:
 - Adding more traits and body types for Pets
 - Adding substantially better styling
 - Adding more jokes for myself in the backend
+
+## Video
+[Here it is](https://youtu.be/tdjSumwCkJg)
+https://youtu.be/tdjSumwCkJg
