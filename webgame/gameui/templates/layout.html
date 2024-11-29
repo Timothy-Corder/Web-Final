@@ -42,7 +42,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'register' %}">Register</a>
             </li>
+            	<div class="spacer"></div>
         {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'settings' %}" style="font-size:12pt">Settings</a>
+            </li>
     </ul>
     <div class="backdrop">
         {% block body %}
