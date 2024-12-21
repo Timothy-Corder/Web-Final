@@ -2,100 +2,34 @@
 
 ## Overview
 
-Geneti-pets is a dynamic web-based game for managing virtual Pets. It provides features to:
-- View and manage a collection of Pets, complete with customizable visual traits based on genetics.
-- Hatch eggs with randomized traits and assign names to newly hatched Pets.
-- Visualize traits such as colors, symbols, and characteristics for Pets and eggs, using detailed styles and animations.
-- A complexish Elemental Typing system including 120+ type combinations.
-- Pet breeding, and the inheritance of physical traits from parent to child.
+Geneti-pets is a dynamic web-based game designed to manage virtual pets. The application allows users to view and manage a collection of pets, each with customizable visual traits influenced by genetic inheritance. Players can hatch eggs with randomized traits, assign names to newly hatched pets, and even breed pets to pass on genetic traits. The system incorporates a variety of features, including an intricate elemental typing system with over 120 type combinations. Players can also explore pet breeding, which involves the inheritance of physical traits from parents, as well as the potential for genetic mutations.
 
 ## Distinctiveness and Complexity
 
-### Distinctiveness
-Geneti-pets is quite unlike any CS50w project that I know of. It:
-- Is effectively a virtual Pet simulator with the power to selectively breed for certain traits.
-- Has an interesting genetic code currently involving 32 alleles, which are used to encode information.
-- Uses Django in the styling
+Geneti-pets is a unique application that stands apart from other CS50W projects. Unlike the projects involving e-commerce or social networking, Geneti-pets serves as a virtual pet simulator with an emphasis on genetics, breeding mechanics, and interactive gameplay. The project introduces a genetic system encoded in 32 alleles, used to determine visual and functional traits of the pets. These genetics influence everything from color to symbols and characteristics, providing a degree of depth and complexity beyond standard web applications. 
 
-### Complexity
-The project involves:
-- Integration of Django’s template engine with custom logic to render dynamic content.
-- Four models
-- Extensive CSS for responsive and layered visual designs, ensuring a polished interface.
-- JavaScript for client-side interactivity, including live updates like countdown timers.
-- Server-client communication for managing the lifecycle of Pets and eggs.
-- A genetic inheritance system written through the encoding and decoding of 32 character long strings
-- Breeding, with chance of mutation
+The complexity of Geneti-pets lies in the integration of Django’s backend capabilities with a dynamic and interactive front-end powered by JavaScript. The project employs four models to manage pets, eggs, and user-related data while utilizing Django’s template engine to render dynamic content. CSS is extensively used to create responsive and visually appealing interfaces, ensuring the application is polished and user-friendly. The genetic inheritance system, implemented through encoded strings, adds a layer of algorithmic complexity, while JavaScript facilitates real-time updates, such as countdown timers for egg hatching. These features collectively highlight the distinctiveness and technical depth of the application.
 
 ## File Descriptions
 
-### Core Templates
-- **`layout.html`**: Just the base layout of the page
-- **`pets.html`**: Displays the list of all Pets with their traits visualized through layered CSS styles. Each Pet’s data is dynamically styled using custom filters and Django’s context rendering.
-- **`breed.html`**: Allows for the breeding of Pets, letting the user choose one male and one female Pet that they own, and producing an egg that will eventually hatch into a brand new Pet.
-- **`hatchery.html`**: Manages the egg hatching process, including displaying eggs, their parentage, countdown timers for hatching, and a modal interface for naming Pets upon hatching.
-- **`login.html`**: A fairly standard login page.
-- **`register.html`**: A fairly standard registration page.
-- **`settings.html`**: Lets the user change their settings, currently only including Quality
-- **`home.html`**: A currently empty page that will eventually include a fully responsive game interface
+The project includes a variety of templates to support its functionality. The `layout.html` file provides the base layout for all pages. The `pets.html` template displays a list of pets with their traits visualized using layered CSS styles, dynamically rendered through Django’s context. The `breed.html` template enables users to breed pets, allowing them to select a male and female pair to produce an egg that inherits traits from both parents. The `hatchery.html` template manages the egg-hatching process, displaying eggs, countdown timers, and an interface for naming newly hatched pets. Other templates include `login.html` and `register.html` for user authentication, `settings.html` for adjusting user preferences, and `home.html` for a game interface under development.
 
-### CSS & Assets
-- **`petView.css`**: Styles for Pet cards, ensuring each Pet's appearance reflects their attributes.
-- **`eggView.css`**: CSS for visualizing eggs and styling the hatchery interface.
-- **`style.css`**: Simple site-wide styling.
-- **`typeStyle.css`**: Currently unused CSS that colors Type tags based on their given parameters.
-- **`symbolStyle.css`**: Complex CSS used to visualize symbol images dynamically through the use of little modular bits and pieces of sprites.
-- Symbol and trait images, stored in `/static/assets/`, are dynamically loaded based on the quality and type parameters.
+The CSS files further enhance the user experience. The `petView.css` file styles pet cards to reflect their attributes, while `eggView.css` provides visualizations for eggs. A `style.css` file ensures consistent site-wide styling, and `symbolStyle.css` supports complex visualizations for traits and symbols using modular sprite components. Images and assets are dynamically loaded from the `/static/assets/` directory based on parameters such as quality and type.
 
-### Backend
-- Django to handle trait rendering logic, Pet storage, and egg storage.
-- A custom filter to fetch values from dictionaries.
+On the backend, Django handles logic for trait rendering, pet and egg storage, and custom filters for dynamic content. A custom filter allows fetching values from dictionaries, which simplifies data rendering.
 
 ## How to Run the Application
 
-### The Easy Way:
+The easiest way to run the application is by executing the `runserver.bat` file, which automates the process. Once the server starts, the application can be accessed in a web browser at `http://127.0.0.1:8000`.
 
-1. **Run the Application**
-   - Simply run `runserver.bat`. It will handle everything.
-
-2. **Access the web interface**
-   - Access the application in a web browser at `http://127.0.0.1:8000`.
-
-### The Slightly Less Easy Way:
-
-1. **Install dependencies**:
-   - Ensure Python and Django are installed.
-   - Install required libraries: `pip install -r requirements.txt`.
-
-2. **Set up the database**:
-   - Make migrations: `python manage.py makemigrations`, just to be thorough.
-   - Run migrations: `python manage.py migrate`.
-
-3. **Start the server**:
-   - Run `python manage.py runserver`.
-   - Access the application in a web browser at `http://127.0.0.1:8000`.
+For those who prefer manual setup, the required Python dependencies can be installed using `pip install -r requirements.txt`. The database should then be set up by running `python manage.py makemigrations` followed by `python manage.py migrate`. Afterward, the server can be started with `python manage.py runserver`, and the application can be accessed at the same URL.
 
 ## Additional Information
 
-### Super Cool stuff
-- **Real-time timers**: Countdown functionality updates every second using JavaScript to show when an egg is ready to hatch.
-- **Customization**: The quality of images and animations can be adjusted dynamically through user settings, found at /settings.
+Geneti-pets incorporates several advanced features. Real-time timers implemented using JavaScript allow users to track egg-hatching progress down to the second. The settings page enables users to adjust visual quality and animations dynamically. A hidden feature for superusers, accessible at `/wibblywobbly`, provides the ability to accelerate egg hatching for testing purposes.
 
-### Mildly Funny stuff
-- **Doctor Who?**: Superusers are able to go to `/wibblywobbly` in order to accelerate the hatching of eggs ([Wibbly Wobbly Timey Wimey](https://www.youtube.com/watch?v=mwoI4BqHt3E))
-
-## Future Enhancements
-Planned improvements include:
-- Adding ingame currency
-- Adding an auctionhouse for Pets to be bought and sold
-- Adding a cost to Pet breeding
-- Adding fighting and trait-based abilities
-- Adding aging and maturity
-- Adding anti-incest (Tracking parentage)
-- Adding more traits and body types for Pets
-- Adding substantially better styling
-- Adding more jokes for myself in the backend
+Future enhancements to the application include introducing an in-game currency, an auction house for buying and selling pets, and a cost mechanism for breeding. Plans also include implementing aging and maturity mechanics, anti-incest tracking for parentage, expanded trait and body type options, combat features, and further styling improvements.
 
 ## Video
-[Here it is](https://youtu.be/tdjSumwCkJg)
-https://youtu.be/tdjSumwCkJg
+
+A demonstration video for Geneti-pets is available at the following link: [https://youtu.be/tdjSumwCkJg](https://youtu.be/tdjSumwCkJg).
